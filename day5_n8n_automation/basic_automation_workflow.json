@@ -1,0 +1,117 @@
+{
+  "name": "Basic automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c21c998f-1085-4e92-9e6f-d32132c70fe1",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -288,
+        -32
+      ],
+      "id": "cbd664a2-a8a8-4b23-942a-0555576026c1",
+      "name": "Webhook",
+      "webhookId": "c21c998f-1085-4e92-9e6f-d32132c70fe1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-sonnet-4-6\",\n  \"max_tokens\": 200,\n  \"messages\": [{\"role\": \"user\", \"content\": \"={{ $json.body.text }}\"}]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -80,
+        -32
+      ],
+      "id": "2632f223-a85f-4124-b859-0752958c691b",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eQ6aEf0ZS0KODQtq",
+          "name": "Header Auth account"
+        },
+        "anthropicApi": {
+          "id": "It7dzULyxgMA1gde",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.content[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        128,
+        -32
+      ],
+      "id": "d0a7a4d5-c6db-4363-9959-d46ef452576f",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "1edce31d-ea94-4ccf-8aa0-979d372986d1",
+  "meta": {
+    "instanceId": "5a77169379d97309e1bf55c0048957ac37b7a80a1561fe3698a202af190cfa8c"
+  },
+  "id": "Zy2cmHWzGOj9aJVS",
+  "tags": []
+}
