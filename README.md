@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AI Dev Foundations
 
 Foundational skills for building production-grade AI applications — covering LLM APIs, prompt engineering, reliability patterns and workflow automation.
@@ -40,7 +39,6 @@ Python · Anthropic API · OpenAI API · n8n · `python-dotenv`
 
 Sravani Balne — Full Stack Developer / Tech Lead transitioning into AI development.
 [LinkedIn](https://www.linkedin.com/in/sravanibalne/) · [GitHub](https://github.com/sravanibalne)
-=======
 ## Related Projects
 
 - [`support-triage-agent`](https://github.com/sbalne/support-triage-agent) — An autonomous AI agent that triages support emails, assesses priority, and drafts FAQ-grounded replies using n8n and the Anthropic API.
@@ -49,4 +47,3 @@ Sravani Balne — Full Stack Developer / Tech Lead transitioning into AI develop
   
 # ai-dev-foundations
 Foundational AI development skills — LLM APIs, prompt engineering, agents, automation
->>>>>>> da6e371681bd9bb9408e1a3352cc490922e7d51a
